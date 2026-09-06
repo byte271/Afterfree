@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "afterfree-experimental"
+version = "0.1.0"
+description = "Extract native computation recipes and restore discarded memory on access"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+classifiers = ["Development Status :: 3 - Alpha", "Operating System :: POSIX :: Linux", "Programming Language :: C++", "Programming Language :: Python :: 3"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+afterfree = "afterfree.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["afterfree*"]
+
+[tool.setuptools.package-data]
+afterfree = ["_native/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -p no:faulthandler"
